@@ -83,7 +83,7 @@ async function loadPages() {
   const item = document.querySelector('.gallery-item');
   const rect = item.getBoundingClientRect();
   window.scrollBy({
-    top: rect.height * 2 + 48,
+    top: rect.height * 2,
     behavior: 'smooth',
   });
 

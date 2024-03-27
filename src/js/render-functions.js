@@ -11,7 +11,6 @@ export function render(data) {
     displayToast("Sorry, there are no images matching your search query. Please try again!");
   }
   else {
-    elem.gallery.innerHTML = '';
     const images = data.hits;
 
     const markup = images.map(image => `<li class="gallery-item">

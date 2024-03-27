@@ -73,6 +73,9 @@ async function loadPages() {
   elem.form.reset();
 };
 
+// const item = document.querySelector('.gallery-item');
+// const elem = item.getBoundingClientRect();
+
 
 
 export function displayToast(message) {

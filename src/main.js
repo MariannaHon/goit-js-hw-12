@@ -37,8 +37,11 @@ elem.button.addEventListener("click", loadPages);
 function loadImages(e) {
   e.preventDefault();
 
+  page = 1;
   elem.gallery.innerHTML = '';
   word = elem.wordInput.value.trim();
+
+  hideButton();
 
   if (word !== '') {
     loadPages();
@@ -49,18 +52,24 @@ function loadImages(e) {
 };
 
 async function loadPages() {
-  const images = await fetchingFrom(word);
+  const images = await fetchingFrom();
   const totalPages = Math.ceil(images.totalHits / limit);
-  if (page >= totalPages) {
+  page += 1;
+
+  if (images.hits.length === 0) {
+    displayToast("Sorry, there are no images matching your search query. Please try again!");
+  }
+
+  else if (page >= totalPages) {
     displayToast("We're sorry, but you've reached the end of search results.");
+    hideButton();
+    hideLoading();
   }
   else {
     try {
-      const api = await fetchingFrom(word);
+      const api = await fetchingFrom();
       render(api);
       hideLoading();
-
-      page += 1;
 
       if (page > 1) {
         showButton();
@@ -70,11 +79,18 @@ async function loadPages() {
       console.log(error);
     }
   }
+
+  const item = document.querySelector('.gallery-item');
+  const rect = item.getBoundingClientRect();
+  window.scrollBy({
+    top: rect.height * 2 + 48,
+    behavior: 'smooth',
+  });
+
   elem.form.reset();
 };
 
-// const item = document.querySelector('.gallery-item');
-// const elem = item.getBoundingClientRect();
+
 
 
 

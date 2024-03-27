@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-import { elem, word, showLoading, page, limit } from "../main";
+import { word, showLoading, page, limit } from "../main";
 
 export async function fetchingFrom() {
 

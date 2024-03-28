@@ -49,6 +49,8 @@ function loadImages(e) {
   else {
     displayToast("Please complete the field!")
   }
+
+  elem.form.reset();
 };
 
 async function loadPages() {

@@ -69,8 +69,7 @@ async function loadPages() {
   }
   else {
     try {
-      const api = await fetchingFrom();
-      render(api);
+      render(images);
       hideLoading();
 
       if (page > 1) {
